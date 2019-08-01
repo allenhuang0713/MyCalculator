@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Calculator</title>
+    <style>
+        table,
+        tr {
+            border: 2px solid black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <table>
+        <tr>
+        <tr>
+            <td colspan="4">
+                <h1 id="result"></h1>
+            </td>
+            <!-- <td></td>
+            <td></td>
+            <td></td> -->
+        </tr>
+        <tr>
+            <td><img src="img/AC.png" alt="" onclick="allClean()"></td>
+            <td colspan="2"><img src="img/C.png" alt="" onclick="clean()"></td>
+            <!-- <td></td> -->
+            <td><img src="img/+.png" onclick="operatorClick('+')" alt=""></td>
+        </tr>
+        <tr>
+            <td><img src="img/7.png" alt="" onclick="numClick('7')"></td>
+            <td><img src="img/8.png" alt="" onclick="numClick('8')"></td>
+            <td><img src="img/9.png" alt="" onclick="numClick('9')"></td>
+            <td><img src="img/-.png" onclick="operatorClick('-')" alt=""></td>
+        </tr>
+        <tr>
+            <td><img src="img/4.png" alt="" onclick="numClick('4')"></td>
+            <td><img src="img/5.png" alt="" onclick="numClick('5')"></td>
+            <td><img src="img/6.png" alt="" onclick="numClick('6')"></td>
+            <td><img src="img/x.png" onclick="operatorClick('*')" alt=""></td>
+        </tr>
+        <tr>
+            <td><img src="img/1.png" alt="" onclick="numClick('1')"></td>
+            <td><img src="img/2.png" alt="" onclick="numClick('2')"></td>
+            <td><img src="img/3.png" alt="" onclick="numClick('3')"></td>
+            <td><img src="img/除.png" onclick="operatorClick('/')" alt=""></td>
+        </tr>
+        <tr>
+            <td><img src="img/0.png" alt="" onclick="numClick('0')"></td>
+            <td colspan="3"><img src="img/=.png" alt="" onclick="answer()"></td>
+            <!-- <td></td> -->
+            <!-- <td></td> -->
+        </tr>
+        </tr>
+    </table>
+
+    <script>
+        var tempNum = -1;
+        var op;
+
+        function numClick(num) {
+            document.getElementById('result').innerHTML =
+                document.getElementById('result').innerHTML + num;
+        }
+
+        function operatorClick(str) {
+
+            if (tempNum == -1) {
+                tempNum = document.getElementById('result').innerHTML;
+            } else {
+                count();
+            }
+            op = str;
+
+            document.getElementById('result').innerHTML = "";
+
+            console.log(op);
+            console.log(tempNum);
+        }
+
+        function count() {
+            switch (op) {
+                case '+':
+                    tempNum = parseInt(tempNum) + parseInt(document.getElementById('result').innerHTML);
+                    break;
+                case '-':
+                    tempNum = parseInt(tempNum) - parseInt(document.getElementById('result').innerHTML);
+                    break;
+                case '/':
+                    tempNum = parseInt(tempNum) / parseInt(document.getElementById('result').innerHTML);
+                    break;
+                case '*':
+                    tempNum = parseInt(tempNum) * parseInt(document.getElementById('result').innerHTML);
+                    break;
+            }
+        }
+
+        function clean(clean) {
+            document.getElementById('result').innerHTML = '';
+        }
+
+        function allClean(AC) {
+            document.getElementById('result').innerHTML = '';
+            tempNum = 0;
+        }
+
+        function answer() {
+            count();
+
+            document.getElementById('result').innerHTML = tempNum;
+        }
+    </script>
+</body>
+
+</html>
